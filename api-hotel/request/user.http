@@ -1,0 +1,50 @@
+@api = http://localhost:4000/talento/api/v1
+# @api = http://45.33.7.82:4000/talento/api/v1
+
+@token = yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImVtYWlsQGRvbWluaW8iLCJmb3RvIjoiIiwiYWN0aXZvIjp0cnVlLCJpYXQiOjE3MjY3MTAxODIsImV4cCI6MTcyNjc1MzM4Mn0.7mTJQuh0neApN5V3-LNYdfLXbQX3og9-bBZ5_mxYPCQ
+
+
+### Login
+POST {{api}}/login
+Content-Type: application/json
+
+{
+    "username":"email2@dominio",
+    "password":"123456"
+}
+
+### register
+POST {{api}}/user/register
+Content-Type: application/json
+
+{
+    "email":"email@dominio",
+    "password":"123456"
+}
+
+### Verificar
+POST {{api}}/user/verificar
+Content-Type: application/json
+
+{
+    "email":"email2@dominio"
+}
+
+### Confirmar
+POST {{api}}/user/confirmar
+Content-Type: application/json
+
+{
+    "email":"email2@dominio",
+    "codigo":"1234"
+}
+
+### List user
+GET {{api}}/convocatoria/list/0/100
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### List user
+GET {{api}}/cargo/list/1/0/100
+Content-Type: application/json
+Authorization: Bearer {{token}}
