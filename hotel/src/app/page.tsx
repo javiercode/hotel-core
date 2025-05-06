@@ -4,11 +4,14 @@ import { useState, useEffect } from "react";
 import { useSession } from "./session/SessionContext";
 import Home from "./busqueda/home";
 import Image from "next/image";
+//import "./carousel.css"; // Archivo CSS externo
+import "./home/carousel.css"; // ajusta según la ubicación real
+
 
 const images = [
-  '/img/bannerl.jpg',
-  '/img/banner2.jpg',
-  '/img/banner3.jpg'
+  '/img/banner-l.jpg',
+  '/img/banner-2.jpg',
+  '/img/banner-3.jpg'
 ];
 
 export default function HomePage() {
@@ -17,37 +20,42 @@ export default function HomePage() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 500);
+    }, 4000); // 4 segundos
     return () => clearInterval(interval);
   }, []);
 
+  const prevImage = () => setIndex((index - 1 + images.length) % images.length);
+  const nextImage = () => {
+    console.log("index",index)
+    setIndex((index + 1) % images.length)};
 
   return (
     <>
-    {/* Carrusel de imágenes */}
-    <div className="w-full h-72 relative mb-12 overflow-hidden rounded-xl shadow-lg">
+      {/* Carrusel con controles */}
+      <div className="carousel-container relative w-full h-60 mb-16 rounded-lg overflow-hidden shadow-lg">
         {images.map((src, i) => (
           <Image
             key={i}
             src={src}
             alt={`Imagen ${i + 1}`}
             fill
-            className={`transition-opacity duration-1000 object-cover ${i === index ? 'opacity-100' : 'opacity-0'}`}
+            className={`carousel-image ${i === index ? 'visible' : 'hidden'}`}
           />
         ))}
+        <button onClick={prevImage} className="carousel-btn left-4">❮</button>
+        <button onClick={nextImage} className="carousel-btn right-4">❯</button>
       </div>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-      {/* Tabs de búsqueda y check-in */}
-      <Home/>
+
+      {/* Sección Home centrada */}
+      <div className="flex items-center justify-center h-[400px]">
+        <Home />
+      </div>
 
       {/* Sección Sobre Nosotros */}
       <section className="mt-24 text-center px-6 py-16 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl shadow-md">
         <h2 className="text-4xl font-extrabold text-blue-800 mb-6">Sobre Nosotros</h2>
         <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-          Bienvenido al Hotel Example, su destino ideal para relajarse y disfrutar de una experiencia inolvidable. Nuestro hotel combina comodidad, elegancia y un servicio excepcional para asegurar que su estadía sea perfecta. Ubicados en el corazón de la ciudad, ofrecemos habitaciones de lujo, gastronomía de clase mundial y actividades recreativas para toda la familia.
+          Bienvenido al Hotel Example, su destino ideal para relajarse y disfrutar de una experiencia inolvidable...
         </p>
       </section>
 
