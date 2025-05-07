@@ -27,8 +27,8 @@ export default function Navbar() {
     <header className="navbar">
       <div className="menu-left">
         <Link href="/">Inicio</Link>
-        <Link href="/">Sobre Nosotros</Link>
-        <Link href="/">Contactanos</Link>
+        <Link href="#sobre-nosotros">Sobre Nosotros</Link>
+        <Link href="#contacto">Contactanos</Link>
         {isAuthenticated && rol === "ADM" && <Link href="/habitacion">Habitaciones</Link>}
       </div>
       <div className="menu-right">

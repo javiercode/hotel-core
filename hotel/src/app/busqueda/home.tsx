@@ -44,7 +44,7 @@ export default function HomePage() {
   });
 
   useEffect(() => {
-    if (activeTab === "habitaciones") handleSearchHabitaciones();
+    // if (activeTab === "habitaciones") handleSearchHabitaciones();
     if (activeTab === "reservas" && token) handleFetchReservas();
   }, [activeTab, token]);
 
@@ -134,7 +134,7 @@ export default function HomePage() {
   // }
 
   return (
-    <div>
+    <>
       {/* TABS */}
       <div className="tabs">
         <button
@@ -190,18 +190,33 @@ export default function HomePage() {
             {loading ? (
               <p>Cargando...</p>
             ) : (
-              <div className="room-cards">
+              <div>
+                {/* Encabezados de la tabla */}
+                {habitaciones.length>0 &&
+                <div className="habitaciones-lista-header">
+                  <span>Imagen</span>
+                  <span>Número</span>
+                  <span>Tipo</span>
+                  <span>Camas</span>
+                  <span>Precio</span>
+                  <span>Acción</span>
+                </div>
+                }
+                {/* Lista de habitaciones */}
                 {habitaciones.map((habitacion) => (
-                  <div key={habitacion.id} className="room-card">                    
-                    <img src={"/img/habitacion/image-"+habitacion.id+".jpg"} alt={""+habitacion.numero} />
+                  <div key={habitacion.id} className="room-card">
+                    <img src={`/img/habitacion/image-${habitacion.id}.jpg`} alt={`Habitación ${habitacion.numero}`} />
                     <h3>{habitacion.numero}</h3>
-                    <p>Tipo: {habitacion.tipo}</p>
-                    <p>Camas: {habitacion.numeroCamas}</p>
-                    <p className="price">Precio: ${habitacion.precio} / noche</p>
-                    {token &&
-                    <button onClick={() => handleOpenReservaModal(habitacion)}>
-                      Hacer Reserva
-                    </button>}
+                    <p>{habitacion.tipo}</p>
+                    <p>{habitacion.numeroCamas}</p>
+                    <p className="price">${habitacion.precio} / noche</p>
+                    {token ? (
+                      <button onClick={() => handleOpenReservaModal(habitacion)}>
+                        Hacer Reserva
+                      </button>
+                    ) : (
+                      <span style={{ color: "#999", fontSize: "12px" }}>Inicia sesión</span>
+                    )}
                   </div>
                 ))}
               </div>
@@ -261,6 +276,6 @@ export default function HomePage() {
 
       {/* LOGIN PAGE (si no hay sesión) */}
       {/* {!token && <LoginPage onLoginSuccess={handleLoginSuccess} />} */}
-    </div>
+    </>
   );
 }

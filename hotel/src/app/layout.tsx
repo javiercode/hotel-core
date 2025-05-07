@@ -31,6 +31,7 @@ export default function RootLayout({
     <SessionProvider>
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      {/* <body > */}
         {/* Barra de navegación */}
         <Navbar />
         {/* Contenido */}

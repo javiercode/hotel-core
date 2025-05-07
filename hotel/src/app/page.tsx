@@ -7,9 +7,8 @@ import Image from "next/image";
 //import "./carousel.css"; // Archivo CSS externo
 import "./home/carousel.css"; // ajusta según la ubicación real
 
-
 const images = [
-  '/img/banner-l.jpg',
+  '/img/banner-1.jpg',
   '/img/banner-2.jpg',
   '/img/banner-3.jpg'
 ];
@@ -20,7 +19,7 @@ export default function HomePage() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 4000); // 4 segundos
+    }, 50000); // 4 segundos
     return () => clearInterval(interval);
   }, []);
 
@@ -32,7 +31,9 @@ export default function HomePage() {
   return (
     <>
       {/* Carrusel con controles */}
-      <div className="carousel-container relative w-full h-60 mb-16 rounded-lg overflow-hidden shadow-lg">
+      <div className="carousel-container">
+      
+
         {images.map((src, i) => (
           <Image
             key={i}
@@ -42,17 +43,19 @@ export default function HomePage() {
             className={`carousel-image ${i === index ? 'visible' : 'hidden'}`}
           />
         ))}
-        <button onClick={prevImage} className="carousel-btn left-4">❮</button>
-        <button onClick={nextImage} className="carousel-btn right-4">❯</button>
+        <button onClick={prevImage} className="carousel-button left">❮</button>
+        <button onClick={nextImage} className="carousel-button right">❯</button>
       </div>
 
       {/* Sección Home centrada */}
-      <div className="flex items-center justify-center h-[400px]">
+      {/* <div className="flex items-center justify-center h-[400px]"> */}
+      <div className="overlay-content">
         <Home />
       </div>
 
       {/* Sección Sobre Nosotros */}
-      <section className="mt-24 text-center px-6 py-16 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl shadow-md">
+      <hr/>
+      <section id="sobre-nosotros" className="mt-24 text-center px-6 py-16 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl shadow-md">
         <h2 className="text-4xl font-extrabold text-blue-800 mb-6">Sobre Nosotros</h2>
         <p className="text-lg text-gray-700 max-w-3xl mx-auto">
           Bienvenido al Hotel Example, su destino ideal para relajarse y disfrutar de una experiencia inolvidable...
@@ -60,7 +63,8 @@ export default function HomePage() {
       </section>
 
       {/* Sección Contáctanos */}
-      <section className="mt-24 text-center px-6 py-16 bg-gradient-to-r from-blue-100 to-blue-50 rounded-xl shadow-md">
+      <hr/>
+      <section id="contacto" className="mt-24 text-center px-6 py-16 bg-gradient-to-r from-blue-100 to-blue-50 rounded-xl shadow-md">
         <h2 className="text-4xl font-extrabold text-blue-800 mb-6">Contáctanos</h2>
         <p className="text-lg text-gray-700 mb-4">📞 Teléfono: +591 70000000</p>
         <p className="text-lg text-gray-700 mb-4">✉️ Correo: contacto@hotelexample.com</p>
