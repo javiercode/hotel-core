@@ -28,7 +28,8 @@ export default function Navbar() {
       <div className="menu-left">
         <Link href="/">Inicio</Link>
         <Link href="#sobre-nosotros">Sobre Nosotros</Link>
-        <Link href="#contacto">Contactanos</Link>
+        <Link href="#contacto">Contactanos</Link>        
+        <span style={{paddingLeft:"20dvi",fontFamily:"Arial, sans-serif",fontWeight:"bolder", fontSize:"30px"}}> UTAMA HOTEL</span>        
         {isAuthenticated && rol === "ADM" && <Link href="/habitacion">Habitaciones</Link>}
       </div>
       <div className="menu-right">

@@ -50,6 +50,7 @@ export default function HomePage() {
       {/* Sección Home centrada */}
       {/* <div className="flex items-center justify-center h-[400px]"> */}
       <div className="overlay-content">
+        {/* <h2 >UTAMA hotel</h2> */}
         <Home />
       </div>
 
